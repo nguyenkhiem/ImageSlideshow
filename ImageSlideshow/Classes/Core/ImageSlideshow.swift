@@ -408,8 +408,15 @@ open class ImageSlideshow: UIView {
      */
     open func setScrollViewPage(_ newScrollViewPage: Int, animated: Bool) {
         if scrollViewPage < scrollViewImages.count {
-            scrollView.scrollRectToVisible(CGRect(x: scrollView.frame.size.width * CGFloat(newScrollViewPage), y: 0, width: scrollView.frame.size.width, height: scrollView.frame.size.height), animated: animated)
-            setCurrentPageForScrollViewPage(newScrollViewPage)
+            self.scrollView.contentOffset = CGPoint(x: scrollView.frame.size.width * CGFloat(newScrollViewPage), y: 0.0)
+            UIView.transition(with: self.scrollView, duration: 2.0, options:
+                .transitionCrossDissolve, animations: { () -> Void in
+            }) { (finished) -> Void in
+                self.setCurrentPageForScrollViewPage(newScrollViewPage)
+            }
+            
+            //            scrollView.scrollRectToVisible(CGRect(x: scrollView.frame.size.width * CGFloat(newScrollViewPage), y: 0, width: scrollView.frame.size.width, height: scrollView.frame.size.height), animated: true)
+            //              self.setCurrentPageForScrollViewPage(newScrollViewPage)
             if animated {
                 isAnimating = true
             }
