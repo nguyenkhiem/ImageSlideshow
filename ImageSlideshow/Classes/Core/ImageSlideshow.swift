@@ -400,7 +400,12 @@ open class ImageSlideshow: UIView {
 
         setScrollViewPage(pageOffset, animated: animated)
     }
-
+  
+    public func updateDataPage(_ inputs: [InputSource], position: Int) {
+        self.setImageInputs(inputs)
+        self.setCurrentPageForScrollViewPage(position)
+    }
+    
     /**
      Change the scroll view page. This may differ from `setCurrentPage` as circular slider has two more dummy pages at indexes 0 and n-1 to provide fluent scrolling between first and last item.
      - parameter newScrollViewPage: new scroll view page
