@@ -71,6 +71,7 @@ public class LabelPageIndicator: UILabel, PageIndicatorView {
 
     private func initialize() {
         self.textAlignment = .center
+        self.textColor = .white
     }
 
     private func updateLabel() {
