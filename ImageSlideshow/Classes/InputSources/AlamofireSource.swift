@@ -41,14 +41,17 @@ public class AlamofireSource: NSObject, InputSource {
     }
 
     public func load(to imageView: UIImageView, with callback: @escaping (UIImage?) -> Void) {
-        imageView.af_setImage(withURL: self.url, placeholderImage: placeholder, filter: nil, progress: nil) { [weak self] (response) in                                                              
+        var urlReq = URLRequest(url: self.url)
+        urlReq.addValue("KumoLog-25-1812", forHTTPHeaderField: "User-Agent")
+        
+        imageView.af_setImage(withURLRequest: urlReq, placeholderImage: placeholder) { [weak self] (response) in
             if response.result.isSuccess {
                 callback(response.result.value)
             } else if let strongSelf = self {
                 callback(strongSelf.placeholder)
             } else {
                 callback(nil)
-            }                                                                                                 
+            }
         }
     }
 
