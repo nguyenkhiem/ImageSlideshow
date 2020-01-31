@@ -47,6 +47,8 @@ public class LabelPageIndicator: UILabel, PageIndicatorView {
         return self
     }
 
+    public var totalPages: Int = 0
+
     public var numberOfPages: Int = 0 {
         didSet {
             updateLabel()
@@ -75,7 +77,7 @@ public class LabelPageIndicator: UILabel, PageIndicatorView {
     }
 
     private func updateLabel() {
-        text = "\(page+1)/\(numberOfPages)"
+        text = "\(page+1)/\(totalPages)"
     }
 
     public override func sizeToFit() {
